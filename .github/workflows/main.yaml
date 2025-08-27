@@ -2,9 +2,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]   # Runs when pushing to main
+    branches: [ "main" ]   # Runs when pushing to main
   pull_request:
-    branches: [ "master" ]   # Runs on PRs to main
+    branches: [ "main" ]   # Runs on PRs to main
 
 jobs:
   build:
@@ -27,11 +27,3 @@ jobs:
 
     - name: Run Tests
       run: mvn test
-      
-    - name: Run package
-      run : mvn package
-
-    - name: deploy to tomcat
-      run: curl -v --fail -u ${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }} \
-        -T target/TrainBook-1.0.0-SNAPSHOT.war \
-        "http://${{ secrets.TOMCAT_HOST }}/manager/text/deploy?path=/train-ticket-reservation&update=true"
