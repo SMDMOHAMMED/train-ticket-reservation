@@ -27,4 +27,11 @@ jobs:
     - name: Run Tests
       run: mvn test
 
+      - name: Deploy WAR to Tomcat
+      run: |
+        curl -u ${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASS }} \
+        --upload-file target/train-ticket-reservation.war \
+        "http://${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/train-ticket-reservation&update=true"
+
+
 
