@@ -1,10 +1,11 @@
+
 name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]   # Runs when pushing to main
+    branches: [ "master" ]   # Runs when pushing to main
   pull_request:
-    branches: [ "main" ]   # Runs on PRs to main
+    branches: [ "master" ]   # Runs on PRs to main
 
 jobs:
   build:
@@ -27,7 +28,8 @@ jobs:
 
     - name: Run Tests
       run: mvn test
+      
+    - name: Run package
+      run : mvn package
 
-
-
-
+    ## - name: deploy to tomcat
